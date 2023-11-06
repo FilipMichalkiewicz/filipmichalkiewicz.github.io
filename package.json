@@ -1,7 +1,7 @@
 {
   "name": "filipmichalkiewicz.github.io",
   "version": "0.1.0",
-  "hompage": "https://filipmichalkiewicz.github.io",
+  "homepage": "https://filipmichalkiewicz.github.io/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -15,8 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "npm run build && gh-pages -d build"
+    "build": "react-scripts build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
