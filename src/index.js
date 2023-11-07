@@ -1,17 +1,32 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const middleCursor = document.querySelector(".middle-cursor");
+const Cursor = () => {
+  const [mousePosition, setMousePosition] = useState({x: 0, y: 0});
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const updateMousePosition = e => {
+      setMousePosition({x: e.clientX, y: e.clientY});
+    }
+    window.addEventListener("mousemove", updateMousePosition);
+    if(mousePosition.x < window.innerWidth && mousePosition.y < window.innerHeight && mousePosition.x > 0 && mousePosition.y > 0) (window.innerWidth >= 1000 ? setShown(true) : setShown(false));
+  });
+  return (shown && (<div className="cursor" style={{top: `${mousePosition.y-40}px`, left: `${mousePosition.x-40}px`}}></div>))
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(
+    <div className="container">
+        <Cursor />
+        <header>
+          <h1>
+            Hey there, I’m <span style={{color: "#4831D4"}}>Filip</span><br/>
+            Full-Stack Developer
+          </h1>
+          <h2>& UI/UX Designer</h2>
+        </header>
+        <h3>I'm currently working on my portfolio. Come back later!</h3>
+    </div>
+);
