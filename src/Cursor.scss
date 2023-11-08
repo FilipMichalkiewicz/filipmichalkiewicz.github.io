@@ -1,0 +1,16 @@
+.cursor-container
+{
+    .cursor
+    {
+        position: fixed;
+        z-index: 10;
+        pointer-events: none;
+        border-radius: 100px;
+        transform-origin: center;
+        transition: width .1s, height .1s;
+    }
+
+    .DIFFRENCE
+    {
+    }
+}

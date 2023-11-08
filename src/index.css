@@ -1,105 +1,32 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 @import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 
-body {
+:root 
+{
+  --theme-color-0: #4831D4;
+  --theme-color-1: #CCF381;
+
+  --menu-color: #4831D4;
+  --menu-background-color: #fff;
+  --menu-button-color: #B4B4B4;
+  --menu-button-hover-color: #555555;
+
+  --menu-text-logo-color: #A7A7A7;
+
+  --current-background-color: #F9F9F9;
+
+  --cursor-border-color: black;
+}
+
+body
+{
   margin: 0;
-  background-color: #F9F9F9;
-  user-select: none;
   overflow: hidden;
-  cursor: none;
-}
-
-.container 
-{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-header
-{
-  position: absolute;
-  font-family: "Nunito";
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  letter-spacing: -2.6px;
-  margin-bottom: 50px;
-  width: fit-content;
-  height: fit-content;
-}
-header h1, header h2 
-{
-  margin: 0;
-}
-header h1
-{
-  font-size: 5vw;
-  font-weight: 500;
-  line-height: 6vw;
-  
-}
-header h2
-{
-  color: #4831D4;
-}
-header h2
-{
-  font-size: 2.5vw;
-  font-weight: 300; 
-}
-.container h3
-{
-  position: absolute;
-  bottom: 60px;
-  font-family: "Lato";
-  font-size: 1vw;
-  font-weight: 400;
-  color: rgb(194, 194, 194);
-}
-
-.cursor
-{
-  position: absolute;
-  z-index: 5;
-  width: 80px;
-  height: 80px;
-  border-radius: 100%;
-  border: 2px solid black;
-  background-color: transparent;
-  transition: background-color .5s, width .3s, height .2s;
-  pointer-events: none;
-}
-
-.invert-colors
-{
   background-color: #F9F9F9;
-  mix-blend-mode: difference;
-  width: 100px;
-  height: 100px;
 }
 
-
-@media screen and (max-width: 800px) {
-  header h1
-  {
-    font-size: 10vw;
-    line-height: normal;
-    text-align: center;
-  }
-  header h2
-  {
-    font-size: 6.5vw;
-    font-weight: 400;
-    margin-top: 5px;
-    letter-spacing: 0;    
-  }
-
-  .container h3
-  {
-    font-size: 3.5vw;
-  }
+*::-webkit-scrollbar
+{
+  display: none;
 }
