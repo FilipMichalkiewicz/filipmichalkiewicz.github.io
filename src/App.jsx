@@ -1,7 +1,9 @@
 import Navbar from './Navbar';
 import {useEffect, useState} from 'react';
-import { IsMobileDevice, CursorState } from './StateProvider';
+import {IsMobileDevice, CursorState } from './StateProvider';
 import Cursor from './Cursor';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import HomeView from './HomeView';
 import './App.scss';
 
@@ -9,8 +11,9 @@ const App = () => {
     const [mobileDevice, setMobileDevice] = useState((window.innerWidth < 800 ? true : false));
     const [cursorState, setCursorState] = useState({state: 'NORMAL', target: null});
     const [menuTheme, setMenuTheme] = useState();
-
     useEffect(() => {
+        AOS.init();
+
         const container = document.documentElement.querySelector('.container');
         const body = document.documentElement.body;
         const views = {
@@ -82,7 +85,7 @@ const App = () => {
                 <div className='container' style={menuTheme}>
                     {!mobileDevice && <Cursor />}
                     <Navbar/>
-                    <HomeView/>
+                    <HomeView />
                     <div className='view' style={{top: '100vh',background: 'var(--theme-color-0)'}}></div>
                     <div className='view' style={{top: '200vh'}}></div>
                     <div className='view' style={{top: '300vh'}}></div>

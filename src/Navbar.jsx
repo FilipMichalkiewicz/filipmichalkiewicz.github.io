@@ -7,7 +7,7 @@ const Navbar = ({style}) => {
 
     return (
         <nav style={style}>
-            <div className='text-logo'>
+            <div className='text-logo' data-aos="zoom-out-right">
                 Filip<br/>
                 Michałkiewicz
             </div>
@@ -17,7 +17,7 @@ const Navbar = ({style}) => {
                     <span></span>
                 </div>
             ):(
-                <div className='menu'>
+                <div className='menu' data-aos="zoom-out-down">
                     <div className='selected-btn-bg'></div>
                     <div className='menu-btns'>
                         <div className='selected-btn'>home</div>
