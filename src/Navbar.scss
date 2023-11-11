@@ -48,6 +48,7 @@ nav
             .menu-btn,
             .selected-btn
             {
+                position: relative;
                 display: flex;
                 align-items: center;
                 padding: 0 25px;
@@ -67,17 +68,8 @@ nav
            .selected-btn
             {
                 color: white;
+                background-color: var(--menu-color);
             }
-        }
-        .selected-btn-bg
-        {
-            position: absolute;
-            left: 0;
-            height: 100%;
-            width: 105px;
-            border-radius: 50px;
-            background-color: var(--menu-color);
-            transition: 0.3s;
         }
     }
     .menu-mobile

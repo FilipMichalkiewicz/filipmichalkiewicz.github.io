@@ -1,6 +1,6 @@
 import Navbar from './Navbar';
-import {useEffect, useState} from 'react';
-import {IsMobileDevice, CursorState } from './StateProvider';
+import {useEffect, useState, useRef} from 'react';
+import {IsMobileDevice, CursorState, CurrentView} from './StateProvider';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Cursor from './Cursor';
 import AOS from 'aos';
@@ -12,6 +12,8 @@ const App = () => {
     const [mobileDevice, setMobileDevice] = useState((window.innerWidth < 800 ? true : false));
     const [cursorState, setCursorState] = useState('NORMAL');
     const [menuTheme, setMenuTheme] = useState();
+    const currentView = useRef(0);
+
     useEffect(() => {
         AOS.init();
 
@@ -20,10 +22,10 @@ const App = () => {
         const views = {
             home: container.querySelector('#home'),
         };
-        let view = 0;
         const onScroll = () => {
-            view = Math.floor(container.scrollTop/window.innerHeight);
-            switch(view) {
+            currentView.current = Math.floor(container.scrollTop/window.innerHeight);
+            
+            switch(currentView.current) {
                 case 0:
                     setMenuTheme({
                         '--menu-color': 'var(--theme-color-0)',
@@ -70,7 +72,6 @@ const App = () => {
                     break;
             }
         }
-
         const onResize = () => {
             if(window.innerWidth < 800) {
                 setMobileDevice(true)
@@ -85,14 +86,21 @@ const App = () => {
         <Router>
             <IsMobileDevice.Provider value={{mobileDevice: mobileDevice, setMobileDevice: setMobileDevice}}>
                 <CursorState.Provider value={{cursorState: cursorState, setCursorState: setCursorState}}>
-                    <div className='container' style={menuTheme}>
-                        {!mobileDevice && <Cursor />}
-                        <Navbar/>
-                        <HomeView />
-                        <div className='view' style={{top: '100vh',background: 'var(--theme-color-0)'}}></div>
-                        <div className='view' style={{top: '200vh'}}></div>
-                        <div className='view' style={{top: '300vh'}}></div>
-                    </div>
+                    <CurrentView.Provider value={{currentView: currentView}}>
+                        <div className='container' id='container' style={menuTheme}>
+                            {!mobileDevice && <Cursor />}
+                            {!mobileDevice && (
+                                <div className="view-pagination">
+                                {[0,1,2,3].map((_, i) => {return (<span key={i} className={(i == currentView.current ? "current" : "")}></span>)})}
+                                </div>
+                            )}
+                            <Navbar/>
+                            <HomeView />
+                            <div className='view' id='works' style={{top: '100vh',background: 'var(--theme-color-0)'}}></div>
+                            <div className='view' id='about-me' style={{top: '200vh'}}></div>
+                            <div className='view' id='contact' style={{top: '300vh'}}></div>
+                        </div>
+                    </CurrentView.Provider>
                 </CursorState.Provider>
             </IsMobileDevice.Provider>
         </Router>

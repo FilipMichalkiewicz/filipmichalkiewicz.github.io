@@ -4,4 +4,6 @@ const IsMobileDevice = createContext(false);
 
 const CursorState = createContext('NORMAL');
 
-export {IsMobileDevice, CursorState}
+const CurrentView = createContext(0);
+
+export {IsMobileDevice, CursorState, CurrentView}

@@ -19,6 +19,40 @@
         scroll-snap-align: start;
        
     }
+    .view-pagination
+    {
+        position: fixed;
+        right: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        z-index: 2;
+        bottom: 45vh;
+
+        span
+        {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            background-color: var(--menu-text-logo-color);
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            transform: rotate(45deg);
+            transition: transform .5s, background-color .2s, border .2s;
+
+            &:hover
+            {
+                transform: scale(1.2);
+            }
+        }
+        .current
+        {
+            background-color: transparent;
+            border: 1px solid var(--menu-text-logo-color);
+            transform: rotate(0deg) scale(2);
+        }
+    }
 }
 
 @media screen and (max-width: 800px) {

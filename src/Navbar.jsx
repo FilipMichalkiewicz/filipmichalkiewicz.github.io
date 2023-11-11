@@ -1,12 +1,26 @@
-import {useContext, useState} from 'react';
+import {useContext, useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import { IsMobileDevice, CursorState } from './StateProvider';
+import { IsMobileDevice, CursorState, CurrentView } from './StateProvider';
 import './Navbar.scss';
 
 const Navbar = ({style}) => {
     const {mobileDevice, _} = useContext(IsMobileDevice);
     const {__, setCursorState} = useContext(CursorState);
+    const currentView = useContext(CurrentView);
     const [mobileMenuShown, setMobileMenuShown] = useState(false);
+    const menuButtons = [];
+
+    const scrollTo = (id) => {
+        const view = document.getElementById(id);
+        view && view.scrollIntoView();
+    }
+
+    ['home', 'works', 'about me', 'contact'].map((text, i) => {
+        if(!mobileDevice) {
+            menuButtons.push(<div key={i} className={(i == currentView.currentView.current ? 'selected-btn' : 'menu-btn')} onClick={() => scrollTo(text.replace(' ', '-'))}>{text}</div>)
+        }else   menuButtons.push(<div key={i} className={(i == currentView.currentView.current ? 'selected' : '')} onClick={() => {setMobileMenuShown(false);scrollTo(text.replace(' ', '-'))}}>{text}</div>)
+    
+    })
 
     return (
         <nav style={style}>
@@ -25,10 +39,7 @@ const Navbar = ({style}) => {
                         <span></span>
                     </div>
                     <div className="menu-btns">
-                        <div className='selected'>home</div>
-                        <div>works</div>
-                        <div>about me</div>
-                        <div>contact</div>
+                        {menuButtons}
                     </div>
                     <div className="socialmedia-container">
                         <Link to='https://github.com/filipMichalkiewicz'>Github</Link>
@@ -43,13 +54,9 @@ const Navbar = ({style}) => {
                     <span></span>
                 </div>
             ):(
-                <div className='menu' data-aos="zoom-out-down">
-                    <div className='selected-btn-bg'></div>
+                <div className='menu' data-aos="zoom-out-down"  onMouseEnter={() => setCursorState('SCATTER')} onMouseLeave={() => setCursorState('NORMAL')}>
                     <div className='menu-btns'>
-                        <div onMouseEnter={() => setCursorState('SCATTER')} onMouseLeave={() => setCursorState('NORMAL')} className='selected-btn'>home</div>
-                        <div onMouseEnter={() => setCursorState('SCATTER')} onMouseLeave={() => setCursorState('NORMAL')} className='menu-btn'>works</div>
-                        <div onMouseEnter={() => setCursorState('SCATTER')} onMouseLeave={() => setCursorState('NORMAL')} className='menu-btn'>about me</div>
-                        <div onMouseEnter={() => setCursorState('SCATTER')} onMouseLeave={() => setCursorState('NORMAL')} className='menu-btn'>contact</div>
+                        {menuButtons}
                     </div>
                 </div>
             )}
