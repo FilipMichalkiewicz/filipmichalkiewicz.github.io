@@ -9,7 +9,7 @@
     flex-direction: column;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
+    scroll-snap-type: y mandatory;
 
     .view
     {
@@ -18,5 +18,12 @@
         height: 100%;
         scroll-snap-align: start;
        
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .contaienr
+    {
+        scroll-snap-type: y mandatory !important;
     }
 }

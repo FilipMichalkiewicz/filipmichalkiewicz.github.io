@@ -1,6 +1,7 @@
 import Navbar from './Navbar';
 import {useEffect, useState} from 'react';
 import {IsMobileDevice, CursorState } from './StateProvider';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Cursor from './Cursor';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -9,7 +10,7 @@ import './App.scss';
 
 const App = () => {
     const [mobileDevice, setMobileDevice] = useState((window.innerWidth < 800 ? true : false));
-    const [cursorState, setCursorState] = useState({state: 'NORMAL', target: null});
+    const [cursorState, setCursorState] = useState('NORMAL');
     const [menuTheme, setMenuTheme] = useState();
     useEffect(() => {
         AOS.init();
@@ -31,6 +32,7 @@ const App = () => {
                         '--menu-buttons-hover-color': '#555555',
                         '--current-background-color': '#F9F9F9',
                         '--cursor-border-color': 'black',
+                        '--mobile-navbar-color': 'black',
                     }) 
                     break;
                 case 1:
@@ -41,6 +43,7 @@ const App = () => {
                         '--menu-button-hover-color': 'var(--theme-color-1)',
                         '--current-background-color': 'var(--theme-color-0)',
                         '--cursor-border-color': 'white',
+                        '--mobile-navbar-color': 'var(--theme-color-1)',
                     }) 
                     break;
                 case 2:
@@ -51,6 +54,7 @@ const App = () => {
                         '--menu-buttons-hover-color': '#555555',
                         '--current-background-color': '#F9F9F9',
                         '--cursor-border-color': 'black',
+                        '--mobile-navbar-color': 'black',
                     }) 
                     break;
                 case 3:
@@ -61,6 +65,7 @@ const App = () => {
                         '--menu-buttons-hover-color': '#555555',
                         '--current-background-color': '#F9F9F9',
                         '--cursor-border-color': 'black',
+                        '--mobile-navbar-color': 'black',
                     }) 
                     break;
             }
@@ -71,27 +76,26 @@ const App = () => {
                 setMobileDevice(true)
             }else setMobileDevice(false);
         }
-
-        const onMouseMove = () => {}
         
         container.addEventListener('scroll', onScroll);
         window.addEventListener('resize', onResize);
-        window.addEventListener('mousemove', onMouseMove);
     }, []);
 
     return (
-        <IsMobileDevice.Provider value={{mobileDevice: mobileDevice, setMobileDevice: setMobileDevice}}>
-            <CursorState.Provider value={{cursorState: cursorState, setCursorState: setCursorState}}>
-                <div className='container' style={menuTheme}>
-                    {!mobileDevice && <Cursor />}
-                    <Navbar/>
-                    <HomeView />
-                    <div className='view' style={{top: '100vh',background: 'var(--theme-color-0)'}}></div>
-                    <div className='view' style={{top: '200vh'}}></div>
-                    <div className='view' style={{top: '300vh'}}></div>
-                </div>
-            </CursorState.Provider>
-        </IsMobileDevice.Provider>
+        <Router>
+            <IsMobileDevice.Provider value={{mobileDevice: mobileDevice, setMobileDevice: setMobileDevice}}>
+                <CursorState.Provider value={{cursorState: cursorState, setCursorState: setCursorState}}>
+                    <div className='container' style={menuTheme}>
+                        {!mobileDevice && <Cursor />}
+                        <Navbar/>
+                        <HomeView />
+                        <div className='view' style={{top: '100vh',background: 'var(--theme-color-0)'}}></div>
+                        <div className='view' style={{top: '200vh'}}></div>
+                        <div className='view' style={{top: '300vh'}}></div>
+                    </div>
+                </CursorState.Provider>
+            </IsMobileDevice.Provider>
+        </Router>
     )
 }
 

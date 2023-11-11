@@ -1,5 +1,7 @@
 #home
 {
+    display: flex;
+    align-items: center;
     .center-container {
         position: absolute;
         width: 100%;
@@ -13,7 +15,7 @@
         {
             position: absolute;
             font-family: 'Nunito';
-            margin-bottom: 5vh;
+            margin-bottom: 4vh;
             user-select: none;
             z-index: 1;
 
@@ -44,10 +46,34 @@
             }
         }
     }
+    .socialmedia-container
+    {
+        position: absolute;
+        z-index: 2;
+        left: 15px;
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+        gap: 25px;
+
+        a svg path
+        {
+            fill: #8E8E8E;
+            transition: 0.3s;
+        }
+
+        a:hover svg path
+        {
+            fill: var(--fill-color);
+        }
+    }
     .decor 
     {
         z-index: 0;
-        
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
         * 
         {
             position: absolute;
@@ -103,36 +129,71 @@
             bottom: 22vh;
             right: 28vw;
         }
+        #scroll-down-indicator
+        {
+            bottom: 0px;
+            
+            #arrow
+            {
+                fill: black;
+            }
+            #border
+            {
+                stroke: black;
+                fill: transparent;
+            }
+            *
+            {
+                transition: 0.3s;
+            }
+
+            &:hover
+            {
+                #arrow
+                {
+                    fill: white;
+                }
+                #border
+                {
+                    fill: var(--theme-color-0);
+                    stroke: var(--theme-color-0);
+                }
+            }
+        }
     }
 }
 
 
 
-@media screen and (min-width: 1920px) 
+@media screen and (max-width: 1920px) 
 {
     #home header 
     {
         h1 
         {
-            font-size: 100px !important;
+            font-size: 6em !important;
         }
         h2
         {
-            font-size: 35px !important;
+            font-size: 2.5em !important;
         }
     }
 }
 @media  screen and (max-width: 1400px) 
 {
-    #home header 
+    #home 
     {
-        h1 
+
+        header 
         {
-            font-size: 80px !important;
-        }
-        h2
-        {
-            font-size: 35px !important;
+            h1 
+            {
+                font-size: 4em !important;
+            }
+            h2
+            {
+                font-size: 2em !important;
+            }
         }
     }
 }

@@ -17,6 +17,8 @@
   --current-background-color: #F9F9F9;
 
   --cursor-border-color: black;
+  
+  --mobile-navbar-color: black;
 }
 
 body
@@ -24,6 +26,7 @@ body
   margin: 0;
   overflow: hidden;
   background-color: #F9F9F9;
+  cursor: pointer;
 }
 
 *::-webkit-scrollbar

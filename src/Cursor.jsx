@@ -5,31 +5,17 @@ import './Cursor.scss';
 const Cursor = () => {
     const {cursorState, _} = useContext(CursorState);
     const [cursorPosition, setCursorPosition] = useState({x: 0, y: 0});
+    const [mousePosition, setMousePosition] = useState({x: 0, y: 0});
+    const cursor = document.querySelector('.cursor');
 
-    const cursorStates = {
-        NORMAL: {
-            width: '80px',
-            height: '80px',
-            border: '1px solid var(--cursor-border-color)'
-        },
-        DIFFRENCE: {
-            width: '120px',
-            height: '120px',
-            background: 'var(--current-background-color)',
-            mixBlendMode: 'difference'
-        }
-    }
     useEffect(() => {
-        const onMouseMove = e => {
-            setCursorPosition({x: e.clientX, y: e.clientY});
-        }
-        window.addEventListener("mousemove", onMouseMove);
-    }, []);
+        setCursorPosition({x: mousePosition.x - (cursor ? cursor.offsetWidth/2 : 0), y: mousePosition.y - (cursor ? cursor.offsetHeight/2 : 0)});
+    }, [mousePosition.x, mousePosition.y]);
+
+    useEffect(() => window.addEventListener("mousemove", (e) => setMousePosition({x: e.clientX, y: e.clientY})), []);
 
     return (
-        <div className="cursor-container">
-            <div style={{top: `${cursorPosition.y-(Number.parseInt(cursorStates[cursorState.state].width.replace("px", ""))/2)}px`,left: `${cursorPosition.x-(Number.parseInt(cursorStates[cursorState.state].width.replace("px", ""))/2)}px`, ...cursorStates[cursorState.state]}} className={`cursor ${cursorState.state}`}><span className='middle-dot'></span></div>
-        </div>
+        <div style={{top: `${cursorPosition.y}px`,left: `${cursorPosition.x}px`}} className='cursor' type={cursorState}><span className='middle-dot'></span></div>
     )
 }
 

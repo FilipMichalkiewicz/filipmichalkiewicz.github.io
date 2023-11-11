@@ -2,6 +2,6 @@ import {createContext} from 'react';
 
 const IsMobileDevice = createContext(false);
 
-const CursorState = createContext({state: 'NORMAL', target: null});
+const CursorState = createContext('NORMAL');
 
 export {IsMobileDevice, CursorState}
