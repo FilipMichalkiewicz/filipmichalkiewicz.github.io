@@ -1,0 +1,48 @@
+:root
+{
+    --bg-color: #ECECEC;
+    --border-color: #B9B9B9;
+    --color-1: #1E1E1E;
+    --empty-space-fill-color: #E3E3E3;
+    --accent-color: #FF6960;
+    --accent-color-2: #FFBF60;
+    --accent-color-3: #8960FF;
+}
+
+body
+{
+    margin: 0 50px;
+    background-color: var(--bg-color);
+    font-family: 'Work Sans';
+    height: 100vh;
+}
+
+@keyframes slide-up {
+    from {transform: translateY(100%); opacity: 0;}
+    to {transform: translateY(0); opacity: 100%;}
+}
+
+@keyframes slide-down {
+    from {transform: translateY(-100%); opacity: 0;}
+    to {transform: translateY(0); opacity: 100%;}
+}
+
+@keyframes slide-left {
+    from {transform: translateX(100%)}
+    to {transform: translateX(0)}
+}
+
+@keyframes slide-right {
+    from {transform: translateX(-100%)}
+    to {transform: translateX(0)}
+}
+
+@keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 100%;}
+}
+
+@keyframes slide-right-opacity {
+    from {transform: translateX(-100%); opacity: 0;}
+    to {transform: translateX(0); opacity: 100%;}
+}
