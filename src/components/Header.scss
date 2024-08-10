@@ -21,17 +21,24 @@ header
         color: var(--color-1);
         text-transform: uppercase;
         letter-spacing: 1px;
+        overflow: hidden;
+        span
+        {
+            animation: 1s fade-in;
+        }
     }
 
     .menu
     {
         height: 100px;
+        overflow: hidden;
 
         nav
         {
             display: flex;
             flex-direction: row;
             gap: clamp(15px, 2vw, 40px);
+            user-select: none;
 
             li 
             {
@@ -53,6 +60,12 @@ header
                     font-size: clamp(.9rem, 2vw, 1.25rem);
                     white-space: nowrap;
                     animation: var(--animation-delay) slide-down;
+                    transition: 0.3s;
+                }
+
+                &:hover > a
+                {
+                    color: var(--color-2);
                 }
             }
 
@@ -60,6 +73,7 @@ header
             {
                 color: var(--color-1);
             }
+            
         }
 
         .author
@@ -70,6 +84,7 @@ header
             color: var(--color-1);
             text-transform: uppercase;
             font-size: clamp(.9rem, 1.25vw, 1.25rem);
+            animation: 1s fade-in;
         }
     }
 }

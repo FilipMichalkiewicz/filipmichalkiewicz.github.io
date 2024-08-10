@@ -1,3 +1,4 @@
+import { menuButtons } from '../lib/Constants';
 import './Header.scss'
 import { Link } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ function Header() {
                 </section>
                 <nav className="center-section">
                     {
-                        ['home', 'about me', 'projects', 'resume', 'contact'].map((text, i) => {
+                        menuButtons.map((text, i) => {
                             return <li key={text}><Link style={{'--animation-delay': i*300 + 200 + 'ms'}}  className={text == 'home' ? 'current' : null} to={'/'+text.replace(' ', '-')} >{text}</Link></li>
                         })
                     }

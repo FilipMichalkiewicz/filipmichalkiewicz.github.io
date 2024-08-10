@@ -1,0 +1,1 @@
+export const menuButtons = ['home', 'about me', 'projects', 'resume', 'contact'];

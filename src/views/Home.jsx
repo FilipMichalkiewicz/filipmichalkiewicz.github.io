@@ -2,7 +2,7 @@ import './Home.scss'
 import { Link } from 'react-router-dom'
 import { ArrowIcon } from '../components/Assets'
 import Image from '../assets/image-1.png'
-import { FaGithub, FaStackOverflow, FaLinkedin, FaDribbble } from "react-icons/fa";
+import { FaGithub, FaStackOverflow, FaLinkedin, FaDribbble } from "react-icons/fa"
 
 function Home() {
     return (

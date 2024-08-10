@@ -3,6 +3,7 @@
     --bg-color: #ECECEC;
     --border-color: #B9B9B9;
     --color-1: #1E1E1E;
+    --color-2: #1E1E1E70;
     --empty-space-fill-color: #E3E3E3;
     --accent-color: #FF6960;
     --accent-color-2: #FFBF60;
@@ -11,10 +12,21 @@
 
 body
 {
-    margin: 0 50px;
+    margin: 0;
     background-color: var(--bg-color);
     font-family: 'Work Sans';
-    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+* 
+{
+    &::selection
+    {
+        background-color: var(--accent-color);
+    }
 }
 
 @keyframes slide-up {
